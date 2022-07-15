@@ -6,7 +6,6 @@ import Header from "./components/Header/Header";
 import Navbar from "./components/Navbar/Navbar";
 import Profile from "./components/Profile/Profile";
 
-/* yuyiuiuy ssS sssSSS*/
 const App = (props) => {
   return (
     <BrowserRouter>
