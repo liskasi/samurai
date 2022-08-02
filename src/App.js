@@ -7,7 +7,7 @@ import Header from "./components/Header/Header";
 import Navbar from "./components/Navbar/Navbar";
 import Profile from "./components/Profile/Profile";
 
-const App = (props) => {
+const App = () => {
   return (
     <BrowserRouter>
       <div className="app-wrapper">
@@ -18,14 +18,12 @@ const App = (props) => {
             <Route
               path={"/profile"}
               element={
-                <Profile
-                  store={props.store}
-                />
+                <Profile />
               }
             />
             <Route
               path={"/dialogs/*"}
-              element={<DialogsContainer store={props.store} />}
+              element={<DialogsContainer />}
             />
             <Route path="/feed" element="" />
             <Route path="/music" element="" />
