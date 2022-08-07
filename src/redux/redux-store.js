@@ -14,5 +14,6 @@ let store = configureStore({
         dialogsPage: dialogsReducer
     }
 });
+window.store = store;
 
 export default store;
