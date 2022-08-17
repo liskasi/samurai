@@ -28,6 +28,9 @@ let mapDispatchToProps = (dispatch) => {
     setUsers: (users) => {
       dispatch(setUsersActionCreator(users));
     },
+    setCurrentPage: (pageNumber) => {
+      dispatch
+    }
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Users);
