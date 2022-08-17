@@ -7,10 +7,13 @@ import {
   unfollowActionCreator,
 } from "../../redux/users-reducer";
 import classes from "./Users.module.css";
+import { current } from "@reduxjs/toolkit";
 let mapStateToProps = (state) => {
-  debugger
   return {
     users: state.usersPage.users,
+    pageSize: state.usersPage.pageSize,
+    totalUsersCount: state.usersPage.totalUsersCount,
+    currentPage: state.usersPage.currentPage
   };
 };
 
