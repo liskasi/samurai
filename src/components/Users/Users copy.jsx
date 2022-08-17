@@ -3,6 +3,48 @@ import * as axios from 'axios';
 import userPhoto from '../../assets/images/user.png';
 
 let Users = (props) => {
+  // debugger
+  //   if (props.users.length === 0) {
+  //     props.setUsers([
+  //       {
+  //         id: 1,
+  //         fullname: "Elisaveta",
+  //         status: "Hillow",
+  //         location: { city: "Vyborg", country: "Russia" },
+  //         photoUrl:
+  //           "https://bestprofilepictures.com/wp-content/uploads/2020/07/Cool-Profile-Picture-For-Instagram-768x784.jpg",
+  //       },
+  //       {
+  //         id: 2,
+  //         fullname: "Maximka",
+  //         status: "I love Lisa",
+  //         location: { city: "Lensk", country: "Russia" },
+  //         followed: true,
+  //         photoUrl:
+  //           "https://bestprofilepictures.com/wp-content/uploads/2020/07/Cool-Profile-Picture-For-Instagram-768x784.jpg",
+  //       },
+  //       {
+  //         id: 3,
+  //         fullname: "Karlis",
+  //         status: "I am a Zakiiiiis",
+  //         location: { city: "Kuldiga", country: "Latvia" },
+  //         followed: false,
+  //         photoUrl:
+  //           "https://bestprofilepictures.com/wp-content/uploads/2020/07/Cool-Profile-Picture-For-Instagram-768x784.jpg",
+  //       },
+  //       {
+  //         id: 4,
+  //         fullname: "Arturss",
+  //         status: "I have covid",
+  //         location: { city: "Riga", country: "Latvia" },
+  //         followed: true,
+  //         photoUrl:
+  //           "https://bestprofilepictures.com/wp-content/uploads/2020/07/Cool-Profile-Picture-For-Instagram-768x784.jpg",
+  //       },
+  //     ]);
+  //   }
+  // debugger
+
   let getUsers = (props) => {
     if (props.users.length === 0) {
       axios
