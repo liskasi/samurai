@@ -66,30 +66,19 @@ let mapStateToProps = (state) => {
   };
 };
 
-let mapDispatchToProps = (dispatch) => {
-  return {
-    follow: (userId) => {
-      dispatch(followActionCreator(userId));
-    },
-    unfollow: (userId) => {
-      dispatch(unfollowActionCreator(userId));
-    },
-    setUsers: (users) => {
-      dispatch(setUsersActionCreator(users));
-    },
-    setCurrentPage: (pageNumber) => {
-      dispatch(setCurrentPageActionCreator(pageNumber));
-    },
-    setTotalUsersCount: (totalCount) => {
-      dispatch(setUsersTotalActionCreator(totalCount));
-    },
-    toggleIsFetching: (isFetching) => {
-      dispatch(toggleIsFetchingActionCreator(isFetching));
-    }
-  };
-};
-export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer);
+
+export default connect(mapStateToProps, {
+  follow: followActionCreator,
+  unfollow: unfollowActionCreator,
+  setUsers: setUsersActionCreator,
+  setCurrentPage: setCurrentPageActionCreator,
+  setTotalUsersCount: setUsersTotalActionCreator,
+  toggleIsFetching: toggleIsFetchingActionCreator
+}
+)(UsersContainer);
 
 
 //hoc-high order component
 //dispatch
+//redux
+//withRouter
