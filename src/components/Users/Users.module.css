@@ -5,4 +5,9 @@ img {
 
 .selectedPage {
     font-weight: bold;
+    color: #727E66;
+}
+
+.userPhoto {
+    width: 60px;
 }
