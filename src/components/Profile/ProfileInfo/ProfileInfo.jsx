@@ -1,15 +1,20 @@
 import React from 'react';
+import Preloader from '../../common/Preloader/Preloader';
 import classes from './ProfileInfo.module.css';
+import ProfileStatus from './ProfileStatus';
 
 const ProfileInfo = (props) => {
+  if(!props.profile) {
+    return <Preloader />
+  }
   return (
     <div>
-      <div className={classes.image}>
+      {/* <div className={classes.image}>
         <img src='./content-img.jpg' alt='Main Content' />
-      </div>
+      </div> */}
       <div>
         <img src={props.profile.photos.large} />
-        ava + desc
+        <ProfileStatus status="Hello,my friends!" />
       </div>
     </div>
   );
