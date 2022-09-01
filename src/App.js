@@ -6,6 +6,7 @@ import HeaderContainer from "./components/Header/HeaderContainer";
 import Navbar from "./components/Navbar/Navbar";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import UsersContainer from "./components/Users/UsersContainer";
+import LoginPage from "./components/Login/Login";
 
 const App = () => {
   return (
@@ -23,6 +24,7 @@ const App = () => {
             <Route path="/feed" element="" />
             <Route path="/music" element="" />
             <Route path="/settings" element="" />
+            <Route path="/login" element={<LoginPage />} />
           </Routes>
         </div>
       </div>

@@ -1,23 +1,22 @@
-import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import { applyMiddleware, combineReducers, configureStore, createStore } from "@reduxjs/toolkit";
 import profileReducer from "./profile-reducer";
 import dialogsReducer from "./dialogs-reducer";
 import sidebarReducer from "./sidebar-reducer";
 import usersReducer from "./users-reducer";
 import authReducer from "./auth-reducer";
-// let reducers = combineReducers({
-//     profilePage: profileReducer,
-//     dialogsPage: dialogsReducer,
-//     sidebar: sidebarReducer
-// });
-
-let store = configureStore({
-  reducer: {
-    profilePage: profileReducer,
-    dialogsPage: dialogsReducer,
-    usersPage: usersReducer,
-    auth: authReducer
-  }
+import thunkMiddleware from "redux-thunk";
+let reducer = combineReducers({
+  profilePage: profileReducer,
+  dialogsPage: dialogsReducer,
+  sidebar: sidebarReducer,
+  usersPage: usersReducer,
+  auth: authReducer
 });
+
+let store = createStore(
+  reducer,
+  applyMiddleware(thunkMiddleware)
+);
 window.store = store;
 
 export default store;

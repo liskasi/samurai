@@ -1,42 +1,24 @@
 import React from "react";
 import { connect } from "react-redux";
 import {
-  followActionCreator,
-  setCurrentPageActionCreator,
-  setUsersActionCreator,
-  unfollowActionCreator,
-  setUsersTotalActionCreator,
-  toggleIsFetchingActionCreator
+  follow,
+  setCurrentPage,
+  unfollow,
+  toggleFollowingProgress,
+  getUsers
 } from "../../redux/users-reducer";
-import * as axios from "axios";
 import Users from "./Users";
 import Preloader from "../common/Preloader/Preloader";
+import { withAuthRedirect } from "../../hoc/withAuthRedirect";
+import { compose } from "redux";
 
 class UsersContainer extends React.Component {
   componentDidMount() {
-    this.props.toggleIsFetching(true);
-    axios
-      .get(
-        `https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`
-      )
-      .then((response) => {
-        this.props.toggleIsFetching(false);
-        this.props.setUsers(response.data.items);
-        this.props.setTotalUsersCount(response.data.totalCount);
-      });
+    this.props.getUsers(this.props.currentPage, this.props.pageSize);
   }
 
   onPageChange = (p) => {
-    this.props.setCurrentPage(p);
-    this.props.toggleIsFetching(true);
-    axios
-      .get(
-        `https://social-network.samuraijs.com/api/1.0/users?page=${p}&count=${this.props.pageSize}`
-      )
-      .then((response) => {
-        this.props.setUsers(response.data.items);
-        this.props.toggleIsFetching(false);
-      });
+    this.props.getUsers(p, this.props.pageSize);
   };
 
   render() {
@@ -49,6 +31,7 @@ class UsersContainer extends React.Component {
         users={this.props.users}
         follow={this.props.follow}
         unfollow={this.props.unfollow}
+        followingInProgress={this.props.followingInProgress}
       />
     </>
   }
@@ -56,27 +39,26 @@ class UsersContainer extends React.Component {
 
 
 let mapStateToProps = (state) => {
-  console.log(state);
   return {
     users: state.usersPage.users,
     pageSize: state.usersPage.pageSize,
     totalUsersCount: state.usersPage.totalUsersCount,
     currentPage: state.usersPage.currentPage,
-    isFetching: state.usersPage.isFetching
+    isFetching: state.usersPage.isFetching,
+    followingInProgress: state.usersPage.followingInProgress
   };
 };
 
-
-export default connect(mapStateToProps, {
-  follow: followActionCreator,
-  unfollow: unfollowActionCreator,
-  setUsers: setUsersActionCreator,
-  setCurrentPage: setCurrentPageActionCreator,
-  setTotalUsersCount: setUsersTotalActionCreator,
-  toggleIsFetching: toggleIsFetchingActionCreator
-}
-)(UsersContainer);
-
+export default compose(
+  withAuthRedirect,
+  connect(mapStateToProps, {
+    follow,
+    unfollow,
+    setCurrentPage,
+    toggleFollowingProgress,
+    getUsers
+  })
+)(UsersContainer)
 
 //hoc-high order component
 //dispatch

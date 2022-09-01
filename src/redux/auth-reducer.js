@@ -1,3 +1,5 @@
+import { authAPI } from "../api/api";
+
 const SET_USER_DATA = 'SET_USER_DATA';
 
 let initialState = {
@@ -7,9 +9,7 @@ let initialState = {
     isAuth: false
 };
 
-const authReducer = (state = initialState, action) => { // здесь данные неправильно приходят, да в редусер
-    console.log(2, action);
-
+const authReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_USER_DATA:
             return {
@@ -22,7 +22,16 @@ const authReducer = (state = initialState, action) => { // здесь данны
     }
 }
 
-export const setAuthUserDataActionCreator = (userId, login, email) => 
-({ type: SET_USER_DATA, data: { userId, email, login } }); //видимо, здесь неправильно сэтается
+export const setAuthUserData = (userId, login, email) =>
+    ({ type: SET_USER_DATA, data: { userId, email, login } });
+
+export const getAuthUserData = () => (dispatch) => {
+    authAPI.me().then((response) => {
+        if (response.resultCode === 0) {
+            let { id, login, email } = response.data;
+            dispatch(setAuthUserData(id, login, email));
+        }
+    });
+}
 
 export default authReducer;
