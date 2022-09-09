@@ -3,7 +3,6 @@ import { NavLink } from 'react-router-dom';
 import classes from './Header.module.css';
 
 const Header = (props) => {
-  console.log(props.isAuth);
   return (
     <header className={classes.header}>
       <img src='./1026715.jpg' alt='Logo' />
