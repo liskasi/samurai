@@ -1,7 +1,8 @@
 import React from "react";
 import classes from "./MyPosts.module.css";
 import Post from "./Post/Post";
-//import { addPostActionCreator, updateNewPostTextActionCreator } from "./../../../redux/profile-reducer";
+import { Field, reduxForm } from "redux-form";
+import AddPostForm from "./AddPostForm/AddPostForm";
 
 const MyPosts = (props) => {
   let postsElements = props.posts.map((posts) => (
@@ -10,30 +11,17 @@ const MyPosts = (props) => {
 
   let newPostElement = React.createRef();
 
-  let onAddPost = () => {
-    props.addPost();
-  };
-
-  let onPostChange = () => {
-    let text = newPostElement.current.value;
-    props.updateNewPostText(text);
-    //props.dispatch(updateNewPostTextActionCreator(text));
-    //console.log(text);
+  let onAddPost = (values) => {
+    props.addPost(values.newPostText);
   };
 
   return (
     <div>
       My posts
-      <div>
-        <textarea
-          onChange={onPostChange}
-          ref={newPostElement}
-          value={props.newPostText}
-        ></textarea>
-        <button onClick={onAddPost}>Add post</button>
-        <button>Cancel</button>
+      <AddPostForm onSubmit={onAddPost} />
+      <div className={classes.posts}>
+        {postsElements}
       </div>
-      <div className={classes.posts}>{postsElements}</div>
     </div>
   );
 };
