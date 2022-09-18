@@ -5,6 +5,7 @@ import { required } from "../../utils/validators/validators";
 import { connect } from "react-redux";
 import { login } from "../../redux/auth-reducer";
 import { Navigate } from "react-router-dom";
+import style from "./../common/FormsControls/FormsControls.module.css"
 
 const LoginForm = (props) => {
     return (
