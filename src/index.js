@@ -10,6 +10,9 @@ import { BrowserRouter } from "react-router-dom";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
+setInterval(() => {
+  store.dispatch({type: "FAKE"})
+}, 1000);
 
   root.render(
       <Provider store={store}>

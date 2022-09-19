@@ -1,7 +1,14 @@
-//Селектор это функция, которая принимает state (весь целиком), достаёт из него всё, что нужно, и возвращает в бизнес
-export const getUsers = (state) => {
+//Селектор - это функция, которая принимает state (весь целиком), достаёт из него всё, что нужно, и возвращает в бизнес
+import { createSelector } from "reselect";
+
+export const getUsersSelector = (state) => {
     return state.usersPage.users;
 }
+
+export const getUsers = createSelector(getUsersSelector,
+    (users) => {
+        return users.filter(u => true);
+    })
 
 export const getPageSize = (state) => {
     return state.usersPage.pageSize;
